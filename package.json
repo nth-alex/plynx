@@ -25,6 +25,7 @@
   },
   "keywords": ["react", "dashboard", "ui-kit", "components", "theming"],
   "license": "MIT",
+  "type": "module",
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
@@ -33,6 +34,7 @@
     "@storybook/addon-essentials": "^8.0.0",
     "@storybook/addon-interactions": "^8.0.0",
     "@storybook/react-vite": "^8.0.0",
+    "storybook": "^8.0.0",
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.0.0",
