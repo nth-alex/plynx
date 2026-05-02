@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Getting Started/Introduction" />
+
+# Plynx UI
+
+A modern React dashboard UI kit with a flexible theming system.
+
+## Installation
+
+```bash
+npm install @plynx/ui
+```
+
+## Usage
+
+```tsx
+import { ThemeProvider, Button } from '@plynx/ui'
+import { minimalTheme } from '@plynx/ui/themes'
+import '@plynx/ui/styles'
+
+export default function App() {
+  return (
+    <ThemeProvider theme={minimalTheme}>
+      <Button>Click me</Button>
+    </ThemeProvider>
+  )
+}
+```
+
+## Available Themes
+
+| Theme | Description |
+|-------|-------------|
+| `minimalTheme` | Clean, minimal with light colors |
+| `darkTheme` | Dark mode variant |
+| `professionalTheme` | Bold, data-dense enterprise theme |
