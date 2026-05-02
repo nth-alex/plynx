@@ -18,14 +18,17 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'PlynxUI',
+      formats: ['es', 'cjs'],
       fileName: (format) => `index.${format === 'es' ? 'es' : 'cjs'}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
         globals: { react: 'React', 'react-dom': 'ReactDOM' },
-        assetFileNames: (info) =>
-          info.name === 'style.css' ? 'styles.css' : info.name!,
+        assetFileNames: (info) => {
+          const name = info.names[0] ?? info.name
+          return name === 'style.css' ? 'styles.css' : (name ?? '[name][extname]')
+        },
       },
     },
   },
