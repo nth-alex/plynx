@@ -11,7 +11,8 @@
       "require": "./dist/index.cjs.js",
       "types": "./dist/index.d.ts"
     },
-    "./styles": "./dist/styles.css"
+    "./styles": "./dist/styles.css",
+    "./styles.css": "./dist/styles.css"
   },
   "files": ["dist", "README.md", "CHANGELOG.md"],
   "sideEffects": ["./dist/styles.css"],
