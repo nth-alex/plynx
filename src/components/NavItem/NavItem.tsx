@@ -1,4 +1,5 @@
-import React, { ReactNode, AnchorHTMLAttributes } from 'react'
+import React, { ReactNode, AnchorHTMLAttributes, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useSidebarContext } from '../Sidebar/SidebarContext'
 
 interface NavItemProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
@@ -12,10 +13,19 @@ interface NavItemProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'hr
 export const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(
   ({ label, href, icon, badge, isActive = false, className = '', ...props }, ref) => {
     const { collapsed } = useSidebarContext()
+    const containerRef = useRef<HTMLDivElement>(null)
+    const [tooltipPos, setTooltipPos] = useState<{ top: number; left: number } | null>(null)
 
     if (collapsed) {
+      const showTooltip = () => {
+        if (containerRef.current) {
+          const rect = containerRef.current.getBoundingClientRect()
+          setTooltipPos({ top: rect.top + rect.height / 2, left: rect.right + 8 })
+        }
+      }
+
       return (
-        <div className="relative group/navitem">
+        <div ref={containerRef} onMouseEnter={showTooltip} onMouseLeave={() => setTooltipPos(null)}>
           <a
             ref={ref}
             href={href}
@@ -40,9 +50,16 @@ export const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(
               </span>
             )}
           </a>
-          <span className="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background opacity-0 transition-opacity group-hover/navitem:opacity-100 z-50">
-            {label}
-          </span>
+          {tooltipPos && createPortal(
+            <span
+              role="tooltip"
+              style={{ position: 'fixed', top: tooltipPos.top, left: tooltipPos.left, transform: 'translateY(-50%)' }}
+              className="pointer-events-none z-50 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background"
+            >
+              {label}
+            </span>,
+            document.body
+          )}
         </div>
       )
     }

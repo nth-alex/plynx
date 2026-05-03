@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { NavItem } from './NavItem'
 import { SidebarContext } from '../Sidebar/SidebarContext'
 import { ThemeProvider } from '../../theme/ThemeProvider'
@@ -79,6 +79,15 @@ describe('NavItem', () => {
     it('link has aria-label with full label', () => {
       render(<NavItem label="Dashboard" href="/dashboard" />, { wrapper: CollapsedWrapper })
       expect(screen.getByRole('link', { name: 'Dashboard' })).toBeInTheDocument()
+    })
+
+    it('shows tooltip with full label on hover', () => {
+      const { container } = render(
+        <NavItem label="Dashboard" href="/dashboard" />,
+        { wrapper: CollapsedWrapper }
+      )
+      fireEvent.mouseEnter(container.firstChild!)
+      expect(screen.getByRole('tooltip')).toHaveTextContent('Dashboard')
     })
 
     it('does not render badge', () => {
