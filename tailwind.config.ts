@@ -42,15 +42,6 @@ export default {
         md: 'var(--shadow-md)',
         lg: 'var(--shadow-lg)',
       },
-      keyframes: {
-        'tooltip-in': {
-          '0%': { opacity: '0', transform: 'translateX(-6px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
-        },
-      },
-      animation: {
-        'tooltip-in': 'tooltip-in 120ms ease-out forwards',
-      },
     },
   },
   plugins: [],
