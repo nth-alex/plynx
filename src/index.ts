@@ -1,4 +1,9 @@
-// Theme system (phase 2)
+// Components
+export { Button } from './components/Button/Button'
+export { Input } from './components/Input/Input'
+export { Card } from './components/Card/Card'
+
+// Theme system
 export {
   ThemeProvider,
   ThemeContext,
