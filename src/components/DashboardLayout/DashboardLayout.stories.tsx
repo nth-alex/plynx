@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { LayoutDashboard, BarChart2, FileText, User } from 'lucide-react'
 import { DashboardLayout } from './DashboardLayout'
 import { Sidebar } from '../Sidebar/Sidebar'
 import { Header } from '../Header/Header'
@@ -23,12 +24,12 @@ export const Complete: Story = {
       sidebar={
         <Sidebar logo={<strong style={{ fontSize: '1.1rem' }}>Plynx</strong>}>
           <NavGroup label="Main">
-            <NavItem label="Dashboard" href="/" isActive />
-            <NavItem label="Analytics" href="/analytics" badge={4} />
-            <NavItem label="Reports" href="/reports" />
+            <NavItem label="Dashboard" href="/" icon={<LayoutDashboard size={16} />} isActive />
+            <NavItem label="Analytics" href="/analytics" icon={<BarChart2 size={16} />} badge={4} />
+            <NavItem label="Reports" href="/reports" icon={<FileText size={16} />} />
           </NavGroup>
           <NavGroup label="Settings" className="mt-4">
-            <NavItem label="Profile" href="/profile" />
+            <NavItem label="Profile" href="/profile" icon={<User size={16} />} />
           </NavGroup>
         </Sidebar>
       }

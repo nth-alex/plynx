@@ -3,9 +3,8 @@ import { renderHook } from '@testing-library/react'
 import { useSidebarContext } from './SidebarContext'
 
 describe('useSidebarContext', () => {
-  it('throws when used outside a Sidebar', () => {
-    expect(() => renderHook(() => useSidebarContext())).toThrow(
-      'useSidebarContext must be used within a Sidebar'
-    )
+  it('returns collapsed: false when used outside a Sidebar', () => {
+    const { result } = renderHook(() => useSidebarContext())
+    expect(result.current.collapsed).toBe(false)
   })
 })

@@ -59,7 +59,7 @@ export const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(
                 <span
                   role="tooltip"
                   style={{ animation: '_tooltip-in 120ms ease-out forwards' }}
-                  className="block whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background"
+                  className="block whitespace-nowrap rounded bg-foreground px-2 py-1 text-xs text-background"
                 >
                   {label}
                 </span>

@@ -7,9 +7,7 @@ import { baseTheme } from '../../theme/tokens/base'
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => (
   <ThemeProvider initialTheme={baseTheme} themes={[baseTheme]}>
-    <SidebarContext.Provider value={{ collapsed: false }}>
-      {children}
-    </SidebarContext.Provider>
+    {children}
   </ThemeProvider>
 )
 
