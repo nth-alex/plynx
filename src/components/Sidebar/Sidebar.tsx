@@ -1,4 +1,5 @@
 import { ReactNode, useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { SidebarContext } from './SidebarContext'
 
 interface SidebarProps {
@@ -6,22 +7,6 @@ interface SidebarProps {
   logo?: ReactNode
   footer?: ReactNode
   className?: string
-}
-
-function ChevronLeftIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M15 18l-6-6 6-6" />
-    </svg>
-  )
-}
-
-function ChevronRightIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M9 18l6-6-6-6" />
-    </svg>
-  )
 }
 
 export function Sidebar({ children, logo, footer, className = '' }: SidebarProps) {
@@ -58,7 +43,7 @@ export function Sidebar({ children, logo, footer, className = '' }: SidebarProps
           onClick={() => setCollapsed((c) => !c)}
           className="flex items-center justify-start border-t border-border px-4 py-3 text-secondary hover:bg-border hover:text-foreground transition-colors"
         >
-          {collapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          {collapsed ? <ChevronRight size={16} aria-hidden="true" /> : <ChevronLeft size={16} aria-hidden="true" />}
         </button>
       </aside>
     </SidebarContext.Provider>

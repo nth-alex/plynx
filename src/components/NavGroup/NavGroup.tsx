@@ -1,4 +1,5 @@
 import { ReactNode, useState } from 'react'
+import { ChevronDown, ChevronRight } from 'lucide-react'
 import { useSidebarContext } from '../Sidebar/SidebarContext'
 
 interface NavGroupProps {
@@ -22,7 +23,7 @@ export function NavGroup({ label, children, className = '' }: NavGroupProps) {
         aria-expanded={open}
       >
         <span>{label}</span>
-        <span aria-hidden="true">{open ? '▾' : '▸'}</span>
+        {open ? <ChevronDown size={12} aria-hidden="true" /> : <ChevronRight size={12} aria-hidden="true" />}
       </button>
       {open && (
         <div className="border-l border-border ml-3 pl-3 flex flex-col gap-1">
