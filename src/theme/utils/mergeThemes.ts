@@ -1,8 +1,19 @@
 import type { Theme } from '../types'
 
-function deepMerge(target: Record<string, unknown>, source: Record<string, unknown>): Record<string, unknown> {
-  const result = { ...target }
-  for (const key in source) {
+function deepMerge(
+  target: Record<string, unknown>,
+  source: Record<string, unknown>
+): Record<string, unknown> {
+  const result: Record<string, unknown> = {}
+  for (const key of Object.keys(target)) {
+    const val = target[key]
+    if (val !== null && typeof val === 'object' && !Array.isArray(val)) {
+      result[key] = deepMerge(val as Record<string, unknown>, {})
+    } else {
+      result[key] = val
+    }
+  }
+  for (const key of Object.keys(source)) {
     const val = source[key]
     if (val !== null && typeof val === 'object' && !Array.isArray(val)) {
       result[key] = deepMerge(
@@ -30,7 +41,7 @@ export function flattenThemeTokens(theme: Theme): Record<string, string> {
   const result: Record<string, string> = {}
 
   const flatten = (obj: Record<string, unknown>, parentKey: string) => {
-    for (const key in obj) {
+    for (const key of Object.keys(obj)) {
       const value = obj[key]
       const varName = `${parentKey}-${key}`
       if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
