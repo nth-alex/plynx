@@ -1,0 +1,82 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Getting Started/Themes" />
+
+# Themes
+
+Plynx UI ships with three curated themes. Use the **Theme** selector in the toolbar above to switch between them.
+
+## Minimal (base)
+
+Clean, minimal aesthetic with light neutral tones.
+
+- Background: white
+- Primary: near-black
+- Accent: bright blue
+- Border radius: generous rounding
+
+Best for: SaaS apps, admin portals, personal tools
+
+## Dark
+
+Dark mode variant of Minimal with the same spacing and radius.
+
+- Background: near-black
+- Foreground: near-white
+- Accent: slightly lighter blue
+- Border: subtle dark gray
+
+Best for: Developer tools, analytics, data-heavy dashboards
+
+## Professional
+
+A navy-toned corporate theme with tighter radius for a more formal, enterprise feel.
+
+- Background: soft gray-white
+- Primary: deep navy
+- Accent: corporate blue
+- Radius: tighter corners for data-dense layouts
+
+Best for: Finance, B2B SaaS, enterprise portals
+
+---
+
+## Applying a Theme
+
+```tsx
+import { ThemeProvider, darkTheme, professionalTheme, baseTheme } from '@plynx/ui'
+import '@plynx/ui/styles'
+
+export default function App() {
+  return (
+    // Switch between baseTheme, darkTheme, or professionalTheme
+    <ThemeProvider
+      initialTheme={darkTheme}
+      themes={[baseTheme, darkTheme, professionalTheme]}
+    >
+      <YourApp />
+    </ThemeProvider>
+  )
+}
+```
+
+## Runtime Theme Switching
+
+```tsx
+import { useTheme } from '@plynx/ui'
+
+function ThemeSwitcher() {
+  const { setTheme, currentTheme, availableThemes } = useTheme()
+
+  return (
+    <select
+      value={currentTheme.name}
+      onChange={(e) => setTheme(e.target.value)}
+    >
+      {[...availableThemes.keys()].map((name) => (
+        <option key={name} value={name}>{name}</option>
+      ))}
+    </select>
+  )
+}
+```
