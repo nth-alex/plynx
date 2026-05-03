@@ -51,13 +51,17 @@ export const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(
             )}
           </a>
           {tooltipPos && createPortal(
-            <span
-              role="tooltip"
-              style={{ position: 'fixed', top: tooltipPos.top, left: tooltipPos.left }}
-              className="pointer-events-none z-50 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background animate-tooltip-in"
+            <div
+              style={{ position: 'fixed', top: tooltipPos.top, left: tooltipPos.left, transform: 'translateY(-50%)' }}
+              className="pointer-events-none z-50"
             >
-              {label}
-            </span>,
+              <span
+                role="tooltip"
+                className="block animate-tooltip-in whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background"
+              >
+                {label}
+              </span>
+            </div>,
             document.body
           )}
         </div>
