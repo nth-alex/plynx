@@ -39,7 +39,7 @@ describe('Button', () => {
   it('shows loading indicator when isLoading is true', () => {
     render(<Button isLoading>Go</Button>, { wrapper: Wrapper })
     expect(screen.getByRole('button')).toBeDisabled()
-    expect(screen.getByRole('button')).toHaveTextContent('...')
+    expect(screen.getByRole('button')).toHaveAttribute('aria-busy', 'true')
   })
 
   it('accepts and merges custom className', () => {

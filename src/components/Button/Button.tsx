@@ -3,7 +3,7 @@ import React, { ButtonHTMLAttributes, ReactNode } from 'react'
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant
   size?: ButtonSize
   isLoading?: boolean
@@ -34,6 +34,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         disabled={isDisabled}
+        aria-busy={isLoading}
         className={[
           'inline-flex items-center justify-center rounded-md font-medium',
           'transition-colors duration-150 cursor-pointer',
@@ -42,10 +43,17 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           variantClasses[variant],
           sizeClasses[size],
           className,
-        ].join(' ')}
+        ].filter(Boolean).join(' ')}
         {...props}
       >
-        {isLoading ? '...' : children}
+        {isLoading ? (
+          <>
+            <span aria-hidden="true">...</span>
+            <span className="sr-only">{children}</span>
+          </>
+        ) : (
+          children
+        )}
       </button>
     )
   }
