@@ -26,8 +26,8 @@ export default defineConfig({
       output: {
         globals: { react: 'React', 'react-dom': 'ReactDOM' },
         assetFileNames: (info) => {
-          const name = info.names[0] ?? info.name
-          return name === 'style.css' ? 'styles.css' : (name ?? '[name][extname]')
+          const name = info.name ?? ''
+          return name === 'style.css' ? 'styles.css' : '[name][extname]'
         },
       },
     },

@@ -33,7 +33,7 @@ export function mergeThemes(base: Theme, override: Theme): Theme {
     tokens: deepMerge(
       base.tokens as unknown as Record<string, unknown>,
       override.tokens as unknown as Record<string, unknown>
-    ) as Theme['tokens'],
+    ) as unknown as Theme['tokens'],
   }
 }
 
@@ -61,7 +61,7 @@ export function flattenThemeTokens(theme: Theme): Record<string, string> {
   }
 
   for (const [group, prefix] of Object.entries(tokenGroups)) {
-    const tokens = (theme.tokens as Record<string, unknown>)[group]
+    const tokens = (theme.tokens as unknown as Record<string, unknown>)[group]
     if (tokens && typeof tokens === 'object') {
       flatten(tokens as Record<string, unknown>, prefix)
     }

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import type { Status } from '../../types'
 
 type BadgeVariant = 'default' | 'outline'
