@@ -6,6 +6,37 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
+## [0.2.0] — 2026-05-04
+
+### Added
+
+**Sidebar — collapsed mode**
+- `NavItem` renders icon (if provided) or 2-letter initial pill when sidebar is collapsed
+- Portal-based tooltip shows the full label on hover in collapsed mode, escaping `overflow-y-auto` clipping
+- Fade-from-left animation on tooltip appearance
+- `NavGroup` renders children without group label/line when collapsed, so nav items remain visible
+
+**Sidebar — collapsible NavGroup**
+- `NavGroup` label row is now a button — click to expand/collapse the group
+- Chevron icon (▾ / ▶) indicates open/closed state
+- Children container gets a left border hierarchy line (`border-l`) when open
+
+**SidebarContext**
+- New `SidebarContext` + `useSidebarContext()` hook distributes `collapsed` state to child components without prop drilling
+- Defaults to `{ collapsed: false }` outside a `Sidebar` so `NavItem` and `NavGroup` work standalone
+
+**Lucide icons**
+- `lucide-react` added as a peer dependency (consumer's install is used — no duplication)
+- Collapse toggle button and NavGroup chevrons now use Lucide icons
+- Storybook stories updated with Lucide icons on all nav items
+
+### Changed
+
+- Collapse toggle button restyled to match `NavItem` appearance — icon-only, left-aligned, same hover/focus styles
+- `NavGroup` section headers are now interactive buttons rather than static `<p>` elements
+
+---
+
 ## [0.1.0] — 2026-05-03
 
 ### Added

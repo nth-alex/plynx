@@ -1,6 +1,6 @@
 {
   "name": "plynx",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Modern React dashboard UI kit with flexible theming",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
