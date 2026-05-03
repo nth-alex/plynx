@@ -47,7 +47,12 @@ export function flattenThemeTokens(theme: Theme): Record<string, string> {
       if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
         flatten(value as Record<string, unknown>, varName)
       } else if (typeof value === 'string' || typeof value === 'number') {
-        result[varName] = String(value)
+        const str = String(value)
+        // Color tokens are stored as hsl(...) but Tailwind wraps them as hsl(var() / alpha),
+        // so we strip the hsl() wrapper to avoid double-wrapping.
+        result[varName] = varName.startsWith('--color') && str.startsWith('hsl(') && str.endsWith(')')
+          ? str.slice(4, -1).trim()
+          : str
       }
     }
   }
