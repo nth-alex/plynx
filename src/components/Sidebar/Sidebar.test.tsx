@@ -43,4 +43,15 @@ describe('Sidebar', () => {
     await userEvent.click(screen.getByRole('button', { name: /collapse/i }))
     expect(container.firstChild).toHaveAttribute('data-collapsed', 'true')
   })
+
+  it('children remain in DOM when sidebar is collapsed', async () => {
+    render(
+      <Sidebar>
+        <span data-testid="child">content</span>
+      </Sidebar>,
+      { wrapper: Wrapper }
+    )
+    await userEvent.click(screen.getByRole('button', { name: /collapse/i }))
+    expect(screen.getByTestId('child')).toBeInTheDocument()
+  })
 })
