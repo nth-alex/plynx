@@ -44,8 +44,8 @@ Best for: Finance, B2B SaaS, enterprise portals
 ## Applying a Theme
 
 ```tsx
-import { ThemeProvider, darkTheme, professionalTheme, baseTheme } from '@plynx/ui'
-import '@plynx/ui/styles'
+import { ThemeProvider, darkTheme, professionalTheme, baseTheme } from 'plynx'
+import 'plynx/styles'
 
 export default function App() {
   return (
@@ -63,7 +63,7 @@ export default function App() {
 ## Runtime Theme Switching
 
 ```tsx
-import { useTheme } from '@plynx/ui'
+import { useTheme } from 'plynx'
 
 function ThemeSwitcher() {
   const { setTheme, currentTheme, availableThemes } = useTheme()

@@ -46,7 +46,7 @@ export function ThemeProvider({
         : mergeThemes(baseTheme, themeOrName)
 
     if (!resolved) {
-      console.warn(`[@plynx/ui] Theme "${themeOrName}" not found.`)
+      console.warn(`[plynx] Theme "${themeOrName}" not found.`)
       return
     }
     setCurrentThemeState(resolved)

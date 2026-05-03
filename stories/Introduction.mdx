@@ -9,7 +9,7 @@ A modern React dashboard UI kit with a flexible theming system. 15+ components, 
 ## Installation
 
 ```bash
-npm install @plynx/ui
+npm install plynx
 ```
 
 ## Setup
@@ -18,8 +18,8 @@ Wrap your app in `ThemeProvider` and import the stylesheet:
 
 ```tsx
 // main.tsx
-import { ThemeProvider, baseTheme } from '@plynx/ui'
-import '@plynx/ui/styles'
+import { ThemeProvider, baseTheme } from 'plynx'
+import 'plynx/styles'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <ThemeProvider initialTheme={baseTheme} themes={[baseTheme]}>
@@ -31,7 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 ## Using Components
 
 ```tsx
-import { Button, Card, Input } from '@plynx/ui'
+import { Button, Card, Input } from 'plynx'
 
 function ProfileForm() {
   return (
@@ -51,7 +51,7 @@ function ProfileForm() {
 Plynx UI ships with three themes. Switch using `setTheme` from `useTheme`:
 
 ```tsx
-import { useTheme } from '@plynx/ui'
+import { useTheme } from 'plynx'
 
 function ThemeToggle() {
   const { setTheme, currentTheme } = useTheme()
@@ -78,5 +78,5 @@ function ThemeToggle() {
 ## Links
 
 - [GitHub Repository](https://github.com/your-username/plynx-ui)
-- [npm Package](https://www.npmjs.com/package/@plynx/ui)
+- [npm Package](https://www.npmjs.com/package/plynx)
 - [Report an Issue](https://github.com/your-username/plynx-ui/issues)
