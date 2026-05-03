@@ -17,7 +17,7 @@ export function Header({ title, subtitle, actions, breadcrumbs, className = '' }
   return (
     <header
       className={[
-        'border-b border-border bg-background px-6 py-4',
+        'border-b border-border bg-background px-6 py-3',
         className,
       ].join(' ')}
     >
