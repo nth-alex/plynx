@@ -97,15 +97,20 @@ function ThemeToggle() {
 | Component | Description |
 |-----------|-------------|
 | `DashboardLayout` | Full page shell: sidebar + header + content |
-| `Sidebar` | Collapsible navigation panel with logo and footer slots |
+| `Sidebar` | Collapsible navigation panel with logo, footer, and built-in toggle |
 | `Header` | Top bar with title, breadcrumbs, and actions |
 | `PageContent` | Scrollable main content area |
 
 ### Navigation
 | Component | Description |
 |-----------|-------------|
-| `NavItem` | Navigation link with active state, icon, and badge |
-| `NavGroup` | Labeled section grouping nav items |
+| `NavItem` | Navigation link with active state, icon, badge, and collapsed tooltip |
+| `NavGroup` | Collapsible labeled section with hierarchy lines |
+
+### Hooks
+| Hook | Description |
+|------|-------------|
+| `useSidebarContext` | Returns `{ collapsed: boolean }` — safe to call outside `Sidebar` (defaults to `false`) |
 
 ### Feedback & Interaction
 | Component | Description |
@@ -116,6 +121,55 @@ function ThemeToggle() {
 | `Tabs` | Content switcher with keyboard support |
 | `Dropdown` | Floating menu triggered by a button |
 | `Tooltip` | Hover label with directional positioning |
+
+---
+
+## Sidebar
+
+`Sidebar` manages its own collapsed state and exposes it via `SidebarContext`. Child `NavItem` and `NavGroup` components read this context automatically — no wiring required.
+
+```tsx
+import { Sidebar, NavItem, NavGroup } from 'plynx'
+import { LayoutDashboard, Settings } from 'lucide-react'
+
+<Sidebar logo={<strong>Plynx</strong>} footer={<span>user@example.com</span>}>
+  <NavGroup label="Main">
+    <NavItem label="Dashboard" href="/" icon={<LayoutDashboard size={16} />} isActive />
+    <NavItem label="Settings" href="/settings" icon={<Settings size={16} />} badge={3} />
+  </NavGroup>
+</Sidebar>
+```
+
+**Collapsed state** — when the user clicks the built-in toggle button, the sidebar narrows to icon-only mode (`w-16`). In this state:
+
+- `NavItem` shows only the icon (or a 2-letter initial if no icon is provided) and renders a portal-based tooltip on hover
+- `NavGroup` hides its label and expand/collapse button, rendering only its children
+- The `footer` slot is hidden
+
+**`useSidebarContext`** — read the collapsed state anywhere inside the tree:
+
+```tsx
+import { useSidebarContext } from 'plynx'
+
+function MyNavItem() {
+  const { collapsed } = useSidebarContext()
+  return <span>{collapsed ? '…' : 'Full label'}</span>
+}
+```
+
+**`NavGroup`** — collapsible by default (starts open). Click the label row to toggle. Shows a left-border hierarchy line when expanded.
+
+```tsx
+<NavGroup label="Settings" className="mt-4">
+  <NavItem label="Profile" href="/profile" icon={<User size={16} />} />
+  <NavItem label="Security" href="/security" icon={<Shield size={16} />} />
+</NavGroup>
+```
+
+> **Peer dependency** — `lucide-react` is a peer dependency. Install it alongside `plynx` if you use Lucide icons in nav items:
+> ```bash
+> npm install lucide-react
+> ```
 
 ---
 
