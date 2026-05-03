@@ -5,7 +5,7 @@
 [![npm version](https://img.shields.io/npm/v/plynx)](https://www.npmjs.com/package/plynx)
 [![license](https://img.shields.io/npm/l/plynx)](./LICENSE)
 
-[Demo & Docs](https://your-storybook-url.netlify.app) · [npm](https://www.npmjs.com/package/plynx) · [GitHub](https://github.com/your-username/plynx-ui)
+[npm](https://www.npmjs.com/package/plynx) · [GitHub](https://github.com/your-username/plynx-ui)
 
 ---
 
