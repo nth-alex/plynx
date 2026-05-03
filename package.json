@@ -13,7 +13,7 @@
     },
     "./styles": "./dist/styles.css"
   },
-  "files": ["dist"],
+  "files": ["dist", "README.md", "CHANGELOG.md"],
   "sideEffects": ["./dist/styles.css"],
   "scripts": {
     "dev": "storybook dev -p 6006",
@@ -22,6 +22,17 @@
     "test": "vitest",
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx"
+  },
+  "homepage": "https://your-storybook-url.netlify.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/plynx-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/plynx-ui/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": ["react", "dashboard", "ui-kit", "components", "theming"],
   "license": "MIT",
