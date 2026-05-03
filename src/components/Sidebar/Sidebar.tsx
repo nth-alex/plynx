@@ -42,7 +42,7 @@ export function Sidebar({ children, logo, footer, className = '' }: SidebarProps
           <button
             aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
             onClick={() => setCollapsed((c) => !c)}
-            className="flex w-full items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-secondary transition-colors duration-150 hover:bg-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-secondary transition-colors duration-150 hover:bg-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             {collapsed
               ? <ChevronRight size={16} aria-hidden="true" />
