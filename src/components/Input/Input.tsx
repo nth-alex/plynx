@@ -10,6 +10,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ label, error = false, hint, helpText, disabled, className = '', ...props }, ref) => {
     const id = useId()
+    const descriptionId = (error && hint) || (!error && helpText) ? `${id}-description` : undefined
 
     return (
       <div className="flex flex-col gap-1">
@@ -22,6 +23,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={id}
           disabled={disabled}
+          aria-invalid={error || undefined}
+          aria-describedby={descriptionId}
           className={[
             'w-full rounded-md border bg-background px-3 py-2 text-foreground',
             'text-sm transition-colors duration-150',
@@ -36,10 +39,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {error && hint && (
-          <span className="text-xs text-error">{hint}</span>
+          <span id={`${id}-description`} className="text-xs text-error">{hint}</span>
         )}
         {!error && helpText && (
-          <span className="text-xs text-secondary">{helpText}</span>
+          <span id={`${id}-description`} className="text-xs text-secondary">{helpText}</span>
         )}
       </div>
     )
