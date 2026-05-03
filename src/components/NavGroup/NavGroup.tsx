@@ -11,7 +11,7 @@ export function NavGroup({ label, children, className = '' }: NavGroupProps) {
   const { collapsed } = useSidebarContext()
   const [open, setOpen] = useState(true)
 
-  if (collapsed) return null
+  if (collapsed) return <>{children}</>
 
   return (
     <div className={`flex flex-col gap-1 ${className}`}>

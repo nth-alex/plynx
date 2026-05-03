@@ -89,7 +89,7 @@ describe('NavGroup', () => {
     expect(screen.getByText('Profile')).toBeInTheDocument()
   })
 
-  it('renders nothing when sidebar is collapsed', () => {
+  it('hides group label but renders children when sidebar is collapsed', () => {
     render(
       <NavGroup label="Settings">
         <NavItem label="Profile" href="/profile" />
@@ -97,6 +97,6 @@ describe('NavGroup', () => {
       { wrapper: CollapsedWrapper }
     )
     expect(screen.queryByText('Settings')).not.toBeInTheDocument()
-    expect(screen.queryByText('Profile')).not.toBeInTheDocument()
+    expect(screen.getByRole('link')).toBeInTheDocument()
   })
 })
