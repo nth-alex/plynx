@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, ReactNode } from 'react'
+import React, { createContext, useState, useEffect, useMemo, useCallback, ReactNode } from 'react'
 import type { Theme, ThemeContextType } from './types'
 import { flattenThemeTokens, mergeThemes } from './utils'
 import { baseTheme } from './tokens/base'
@@ -20,8 +20,9 @@ export function ThemeProvider({
     mergeThemes(baseTheme, initialTheme)
   )
 
-  const availableThemes = new Map(
-    themes.map((t) => [t.name, mergeThemes(baseTheme, t)])
+  const availableThemes = useMemo(
+    () => new Map(themes.map((t) => [t.name, mergeThemes(baseTheme, t)])),
+    [themes]
   )
 
   useEffect(() => {
@@ -31,9 +32,14 @@ export function ThemeProvider({
       root.style.setProperty(key, value)
     }
     root.setAttribute('data-theme', currentTheme.name)
+    return () => {
+      for (const key of Object.keys(tokens)) {
+        root.style.removeProperty(key)
+      }
+    }
   }, [currentTheme])
 
-  const setTheme = (themeOrName: Theme | string) => {
+  const setTheme = useCallback((themeOrName: Theme | string) => {
     const resolved =
       typeof themeOrName === 'string'
         ? availableThemes.get(themeOrName)
@@ -44,7 +50,7 @@ export function ThemeProvider({
       return
     }
     setCurrentThemeState(resolved)
-  }
+  }, [availableThemes])
 
   return (
     <ThemeContext.Provider value={{ currentTheme, setTheme, availableThemes }}>
