@@ -11,6 +11,14 @@ export { NavItem } from './components/NavItem/NavItem'
 export { NavGroup } from './components/NavGroup/NavGroup'
 export { PageContent } from './components/PageContent/PageContent'
 
+// Additional components (phase 5)
+export { Badge } from './components/Badge/Badge'
+export { Alert } from './components/Alert/Alert'
+export { Tabs } from './components/Tabs/Tabs'
+export { Modal } from './components/Modal/Modal'
+export { Dropdown, DropdownItem } from './components/Dropdown/Dropdown'
+export { Tooltip } from './components/Tooltip/Tooltip'
+
 // Theme system
 export {
   ThemeProvider,
