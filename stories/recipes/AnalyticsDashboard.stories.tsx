@@ -148,3 +148,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+export const DarkTheme: Story = {
+  globals: { theme: 'dark' },
+}
+
+export const Professional: Story = {
+  globals: { theme: 'professional' },
+}
