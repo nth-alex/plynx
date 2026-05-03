@@ -25,6 +25,8 @@ export {
   ThemeContext,
   useTheme,
   baseTheme,
+  darkTheme,
+  professionalTheme,
   mergeThemes,
 } from './theme'
 export type { Theme, ThemeTokens, ThemeContextType } from './theme'
