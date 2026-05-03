@@ -2,10 +2,10 @@
 
 > A modern React dashboard UI kit with a flexible theming system
 
-[![npm version](https://img.shields.io/npm/v/@plynx/ui)](https://www.npmjs.com/package/@plynx/ui)
-[![license](https://img.shields.io/npm/l/@plynx/ui)](./LICENSE)
+[![npm version](https://img.shields.io/npm/v/plynx)](https://www.npmjs.com/package/plynx)
+[![license](https://img.shields.io/npm/l/plynx)](./LICENSE)
 
-[Demo & Docs](https://your-storybook-url.netlify.app) · [npm](https://www.npmjs.com/package/@plynx/ui) · [GitHub](https://github.com/your-username/plynx-ui)
+[Demo & Docs](https://your-storybook-url.netlify.app) · [npm](https://www.npmjs.com/package/plynx) · [GitHub](https://github.com/your-username/plynx-ui)
 
 ---
 
@@ -23,7 +23,7 @@
 ## Installation
 
 ```bash
-npm install @plynx/ui
+npm install plynx
 ```
 
 ---
@@ -32,8 +32,8 @@ npm install @plynx/ui
 
 ```tsx
 // main.tsx
-import { ThemeProvider, baseTheme, darkTheme, professionalTheme } from '@plynx/ui'
-import '@plynx/ui/styles'
+import { ThemeProvider, baseTheme, darkTheme, professionalTheme } from 'plynx'
+import 'plynx/styles'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <ThemeProvider
@@ -45,7 +45,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 )
 
 // App.tsx
-import { Button, Card, Input } from '@plynx/ui'
+import { Button, Card, Input } from 'plynx'
 
 export function App() {
   return (
@@ -70,7 +70,7 @@ export function App() {
 Switch themes at runtime:
 
 ```tsx
-import { useTheme } from '@plynx/ui'
+import { useTheme } from 'plynx'
 
 function ThemeToggle() {
   const { setTheme, currentTheme } = useTheme()
