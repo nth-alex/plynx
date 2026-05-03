@@ -4,7 +4,7 @@ import { Meta } from '@storybook/blocks'
 
 # Plynx UI
 
-A modern React dashboard UI kit with a flexible theming system.
+A modern React dashboard UI kit with a flexible theming system. 15+ components, 3 curated themes, full TypeScript support.
 
 ## Installation
 
@@ -12,26 +12,71 @@ A modern React dashboard UI kit with a flexible theming system.
 npm install @plynx/ui
 ```
 
-## Usage
+## Setup
+
+Wrap your app in `ThemeProvider` and import the stylesheet:
 
 ```tsx
-import { ThemeProvider, Button } from '@plynx/ui'
-import { minimalTheme } from '@plynx/ui/themes'
+// main.tsx
+import { ThemeProvider, baseTheme } from '@plynx/ui'
 import '@plynx/ui/styles'
 
-export default function App() {
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <ThemeProvider initialTheme={baseTheme} themes={[baseTheme]}>
+    <App />
+  </ThemeProvider>
+)
+```
+
+## Using Components
+
+```tsx
+import { Button, Card, Input } from '@plynx/ui'
+
+function ProfileForm() {
   return (
-    <ThemeProvider theme={minimalTheme}>
-      <Button>Click me</Button>
-    </ThemeProvider>
+    <Card header="Edit Profile">
+      <div className="flex flex-col gap-4">
+        <Input label="Full name" placeholder="Alex Smith" />
+        <Input label="Email" type="email" placeholder="alex@example.com" />
+        <Button>Save changes</Button>
+      </div>
+    </Card>
   )
 }
 ```
 
-## Available Themes
+## Theme Switching
 
-| Theme | Description |
-|-------|-------------|
-| `minimalTheme` | Clean, minimal with light colors |
-| `darkTheme` | Dark mode variant |
-| `professionalTheme` | Bold, data-dense enterprise theme |
+Plynx UI ships with three themes. Switch using `setTheme` from `useTheme`:
+
+```tsx
+import { useTheme } from '@plynx/ui'
+
+function ThemeToggle() {
+  const { setTheme, currentTheme } = useTheme()
+  return (
+    <button onClick={() => setTheme(currentTheme.name === 'dark' ? 'base' : 'dark')}>
+      Toggle dark mode
+    </button>
+  )
+}
+```
+
+## What's Included
+
+**Core:** Button · Input · Card
+
+**Layout:** DashboardLayout · Sidebar · Header · PageContent
+
+**Navigation:** NavItem · NavGroup
+
+**Feedback:** Alert · Badge · Modal · Tooltip
+
+**Interaction:** Tabs · Dropdown
+
+## Links
+
+- [GitHub Repository](https://github.com/your-username/plynx-ui)
+- [npm Package](https://www.npmjs.com/package/@plynx/ui)
+- [Report an Issue](https://github.com/your-username/plynx-ui/issues)
