@@ -1,12 +1,23 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { NavItem } from './NavItem'
+import { SidebarContext } from '../Sidebar/SidebarContext'
 import { ThemeProvider } from '../../theme/ThemeProvider'
 import { baseTheme } from '../../theme/tokens/base'
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => (
   <ThemeProvider initialTheme={baseTheme} themes={[baseTheme]}>
-    {children}
+    <SidebarContext.Provider value={{ collapsed: false }}>
+      {children}
+    </SidebarContext.Provider>
+  </ThemeProvider>
+)
+
+const CollapsedWrapper = ({ children }: { children: React.ReactNode }) => (
+  <ThemeProvider initialTheme={baseTheme} themes={[baseTheme]}>
+    <SidebarContext.Provider value={{ collapsed: true }}>
+      {children}
+    </SidebarContext.Provider>
   </ThemeProvider>
 )
 
@@ -40,5 +51,43 @@ describe('NavItem', () => {
   it('renders badge when provided', () => {
     render(<NavItem label="Alerts" href="/alerts" badge={3} />, { wrapper: Wrapper })
     expect(screen.getByText('3')).toBeInTheDocument()
+  })
+
+  describe('collapsed', () => {
+    it('shows icon when icon is provided and hides label', () => {
+      render(
+        <NavItem label="Dashboard" href="/dashboard" icon={<span data-testid="icon">🏠</span>} />,
+        { wrapper: CollapsedWrapper }
+      )
+      expect(screen.getByTestId('icon')).toBeInTheDocument()
+      expect(screen.queryByText('Dashboard')).not.toBeInTheDocument()
+    })
+
+    it('shows 2-letter initial when no icon is provided', () => {
+      render(<NavItem label="Dashboard" href="/dashboard" />, { wrapper: CollapsedWrapper })
+      expect(screen.getByText('Da')).toBeInTheDocument()
+      expect(screen.queryByText('Dashboard')).not.toBeInTheDocument()
+    })
+
+    it('initial has accent styles', () => {
+      const { container } = render(
+        <NavItem label="Dashboard" href="/dashboard" />,
+        { wrapper: CollapsedWrapper }
+      )
+      expect(container.querySelector('.bg-accent\\/10')).toBeInTheDocument()
+    })
+
+    it('link has title attribute with full label', () => {
+      render(<NavItem label="Dashboard" href="/dashboard" />, { wrapper: CollapsedWrapper })
+      expect(screen.getByRole('link')).toHaveAttribute('title', 'Dashboard')
+    })
+
+    it('does not render badge', () => {
+      render(
+        <NavItem label="Alerts" href="/alerts" badge={3} />,
+        { wrapper: CollapsedWrapper }
+      )
+      expect(screen.queryByText('3')).not.toBeInTheDocument()
+    })
   })
 })

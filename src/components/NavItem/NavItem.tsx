@@ -1,4 +1,5 @@
 import React, { ReactNode, AnchorHTMLAttributes } from 'react'
+import { useSidebarContext } from '../Sidebar/SidebarContext'
 
 interface NavItemProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
   label: string
@@ -10,6 +11,37 @@ interface NavItemProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'hr
 
 export const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(
   ({ label, href, icon, badge, isActive = false, className = '', ...props }, ref) => {
+    const { collapsed } = useSidebarContext()
+
+    if (collapsed) {
+      return (
+        <a
+          ref={ref}
+          href={href}
+          title={label}
+          aria-current={isActive ? 'page' : undefined}
+          className={[
+            'flex items-center justify-center px-0 py-2 w-full rounded-md',
+            'transition-colors duration-150',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
+            isActive
+              ? 'bg-accent/10 text-accent'
+              : 'text-secondary hover:bg-border hover:text-foreground',
+            className,
+          ].join(' ')}
+          {...props}
+        >
+          {icon ? (
+            <span className="h-4 w-4 shrink-0" aria-hidden="true">{icon}</span>
+          ) : (
+            <span className="rounded px-1.5 py-0.5 text-xs font-semibold bg-accent/10 text-accent">
+              {label.slice(0, 2)}
+            </span>
+          )}
+        </a>
+      )
+    }
+
     return (
       <a
         ref={ref}
