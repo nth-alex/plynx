@@ -15,30 +15,35 @@ export const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(
 
     if (collapsed) {
       return (
-        <a
-          ref={ref}
-          href={href}
-          title={label}
-          aria-current={isActive ? 'page' : undefined}
-          className={[
-            'flex items-center justify-center px-0 py-2 w-full rounded-md',
-            'transition-colors duration-150',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
-            isActive
-              ? 'bg-accent/10 text-accent'
-              : 'text-secondary hover:bg-border hover:text-foreground',
-            className,
-          ].join(' ')}
-          {...props}
-        >
-          {icon ? (
-            <span className="h-4 w-4 shrink-0" aria-hidden="true">{icon}</span>
-          ) : (
-            <span className="rounded px-1.5 py-0.5 text-xs font-semibold bg-accent/10 text-accent">
-              {label.slice(0, 2)}
-            </span>
-          )}
-        </a>
+        <div className="relative group/navitem">
+          <a
+            ref={ref}
+            href={href}
+            aria-label={label}
+            aria-current={isActive ? 'page' : undefined}
+            className={[
+              'flex items-center justify-center px-0 py-2 w-full rounded-md',
+              'transition-colors duration-150',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
+              isActive
+                ? 'bg-accent/10 text-accent'
+                : 'text-secondary hover:bg-border hover:text-foreground',
+              className,
+            ].join(' ')}
+            {...props}
+          >
+            {icon ? (
+              <span className="h-4 w-4 shrink-0" aria-hidden="true">{icon}</span>
+            ) : (
+              <span className="rounded px-1.5 py-0.5 text-xs font-semibold bg-accent/10 text-accent">
+                {label.slice(0, 2)}
+              </span>
+            )}
+          </a>
+          <span className="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background opacity-0 transition-opacity group-hover/navitem:opacity-100 z-50">
+            {label}
+          </span>
+        </div>
       )
     }
 

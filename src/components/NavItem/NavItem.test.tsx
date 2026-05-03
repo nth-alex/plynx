@@ -54,19 +54,18 @@ describe('NavItem', () => {
   })
 
   describe('collapsed', () => {
-    it('shows icon when icon is provided and hides label', () => {
+    it('shows icon when icon is provided and hides label as link text', () => {
       render(
         <NavItem label="Dashboard" href="/dashboard" icon={<span data-testid="icon">🏠</span>} />,
         { wrapper: CollapsedWrapper }
       )
       expect(screen.getByTestId('icon')).toBeInTheDocument()
-      expect(screen.queryByText('Dashboard')).not.toBeInTheDocument()
+      expect(screen.queryByText('Da')).not.toBeInTheDocument()
     })
 
     it('shows 2-letter initial when no icon is provided', () => {
       render(<NavItem label="Dashboard" href="/dashboard" />, { wrapper: CollapsedWrapper })
       expect(screen.getByText('Da')).toBeInTheDocument()
-      expect(screen.queryByText('Dashboard')).not.toBeInTheDocument()
     })
 
     it('initial has accent styles', () => {
@@ -77,9 +76,9 @@ describe('NavItem', () => {
       expect(container.querySelector('.bg-accent\\/10')).toBeInTheDocument()
     })
 
-    it('link has title attribute with full label', () => {
+    it('link has aria-label with full label', () => {
       render(<NavItem label="Dashboard" href="/dashboard" />, { wrapper: CollapsedWrapper })
-      expect(screen.getByRole('link')).toHaveAttribute('title', 'Dashboard')
+      expect(screen.getByRole('link', { name: 'Dashboard' })).toBeInTheDocument()
     })
 
     it('does not render badge', () => {
