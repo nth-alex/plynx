@@ -7,6 +7,11 @@ interface PageContentProps {
 
 export function PageContent({children, className = ""}: PageContentProps) {
   return (
-    <main className={["flex-1 overflow-y-auto bg-card rounded-md shadow-xs", className].join(" ")}>{children}</main>
+    <main
+      style={{overscrollBehavior: "none"}}
+      className={["flex-1 overflow-y-auto bg-card rounded-md shadow-xs", className].join(" ")}
+    >
+      {children}
+    </main>
   )
 }
