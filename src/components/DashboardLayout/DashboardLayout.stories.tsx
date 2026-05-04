@@ -23,13 +23,13 @@ export const Complete: Story = {
     <DashboardLayout
       sidebar={
         <Sidebar logo={<strong style={{ fontSize: '1.1rem' }}>Plynx</strong>}>
-          <NavGroup label="Main">
-            <NavItem label="Dashboard" href="/" icon={<LayoutDashboard size={16} />} isActive />
-            <NavItem label="Analytics" href="/analytics" icon={<BarChart2 size={16} />} badge={4} />
-            <NavItem label="Reports" href="/reports" icon={<FileText size={16} />} />
+          <NavGroup label="Main" icon={<LayoutDashboard size={16} />}>
+            <NavItem label="Dashboard" href="/" isActive />
+            <NavItem label="Analytics" href="/analytics" badge={4} />
+            <NavItem label="Reports" href="/reports" />
           </NavGroup>
-          <NavGroup label="Settings" className="mt-4">
-            <NavItem label="Profile" href="/profile" icon={<User size={16} />} />
+          <NavGroup label="Settings" icon={<User size={16} />} className="mt-1">
+            <NavItem label="Profile" href="/profile" />
           </NavGroup>
         </Sidebar>
       }

@@ -46,7 +46,7 @@ export const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(
               <span className="h-4 w-4 shrink-0" aria-hidden="true">{icon}</span>
             ) : (
               <span className="rounded px-1.5 py-0.5 text-xs font-semibold bg-accent/10 text-accent">
-                {label.slice(0, 2)}
+                {label.slice(0, 1)}
               </span>
             )}
           </a>
