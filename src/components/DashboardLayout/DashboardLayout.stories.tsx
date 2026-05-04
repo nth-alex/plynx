@@ -33,20 +33,18 @@ export const Complete: Story = {
           </NavGroup>
         </Sidebar>
       }
-      header={
-        <Header
-          title="Dashboard"
-          subtitle="Welcome back, Alex"
-          breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Dashboard' }]}
-          actions={
-            <>
-              <Button variant="outline" size="sm">Export</Button>
-              <Button size="sm">New Report</Button>
-            </>
-          }
-        />
-      }
     >
+      <Header
+        title="Dashboard"
+        subtitle="Welcome back, Alex"
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Dashboard' }]}
+        actions={
+          <>
+            <Button variant="outline" size="sm">Export</Button>
+            <Button size="sm">New Report</Button>
+          </>
+        }
+      />
       <PageContent>
         <div className="grid grid-cols-3 gap-6">
           <Card header="Total Revenue" variant="elevated">

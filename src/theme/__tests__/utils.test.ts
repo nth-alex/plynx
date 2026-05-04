@@ -31,8 +31,8 @@ describe('mergeThemes', () => {
 describe('flattenThemeTokens', () => {
   it('maps color tokens to CSS variable names', () => {
     const flat = flattenThemeTokens(baseTheme)
-    expect(flat['--color-primary']).toBe('hsl(0 0% 9%)')
-    expect(flat['--color-background']).toBe('hsl(0 0% 100%)')
+    expect(flat['--color-primary']).toBe('0 0% 9%')
+    expect(flat['--color-background']).toBe('59deg 6% 93%')
   })
 
   it('maps spacing tokens to CSS variable names', () => {

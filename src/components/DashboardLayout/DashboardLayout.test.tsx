@@ -9,12 +9,10 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => (
 )
 
 describe('DashboardLayout', () => {
-  it('renders sidebar, header and content', () => {
+  it('renders sidebar and content', () => {
     render(
-      <DashboardLayout
-        sidebar={<aside>Sidebar</aside>}
-        header={<header>Header</header>}
-      >
+      <DashboardLayout sidebar={<aside>Sidebar</aside>}>
+        <header>Header</header>
         <main>Content</main>
       </DashboardLayout>,
       { wrapper: Wrapper }
