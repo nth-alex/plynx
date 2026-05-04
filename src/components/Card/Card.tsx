@@ -16,7 +16,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         className={[
-          'rounded-lg border border-border bg-background overflow-hidden',
+          'rounded-lg border border-border bg-card overflow-hidden',
           variant === 'elevated' ? 'shadow-md' : '',
           className,
         ].filter(Boolean).join(' ')}

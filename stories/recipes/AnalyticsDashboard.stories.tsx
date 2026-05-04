@@ -1,23 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { DashboardLayout } from '../../src/components/DashboardLayout/DashboardLayout'
-import { Sidebar } from '../../src/components/Sidebar/Sidebar'
-import { Header } from '../../src/components/Header/Header'
-import { PageContent } from '../../src/components/PageContent/PageContent'
-import { NavGroup } from '../../src/components/NavGroup/NavGroup'
-import { NavItem } from '../../src/components/NavItem/NavItem'
-import { Card } from '../../src/components/Card/Card'
-import { Badge } from '../../src/components/Badge/Badge'
-import { Alert } from '../../src/components/Alert/Alert'
-import { Tabs } from '../../src/components/Tabs/Tabs'
-import { Button } from '../../src/components/Button/Button'
+import type {Meta, StoryObj} from "@storybook/react"
+import {DashboardLayout} from "../../src/components/DashboardLayout/DashboardLayout"
+import {Sidebar} from "../../src/components/Sidebar/Sidebar"
+import {Header} from "../../src/components/Header/Header"
+import {PageContent} from "../../src/components/PageContent/PageContent"
+import {NavGroup} from "../../src/components/NavGroup/NavGroup"
+import {NavItem} from "../../src/components/NavItem/NavItem"
+import {Card} from "../../src/components/Card/Card"
+import {Badge} from "../../src/components/Badge/Badge"
+import {Alert} from "../../src/components/Alert/Alert"
+import {Tabs} from "../../src/components/Tabs/Tabs"
+import {Button} from "../../src/components/Button/Button"
 
-function StatCard({ label, value, trend }: { label: string; value: string; trend: string }) {
-  const isUp = trend.startsWith('+')
+function StatCard({label, value, trend}: {label: string; value: string; trend: string}) {
+  const isUp = trend.startsWith("+")
   return (
     <Card variant="elevated">
       <p className="text-sm text-secondary mb-1">{label}</p>
       <p className="text-2xl font-bold text-foreground">{value}</p>
-      <p className={`text-xs mt-1 ${isUp ? 'text-success' : 'text-error'}`}>{trend} from last month</p>
+      <p className={`text-xs mt-1 ${isUp ? "text-success" : "text-error"}`}>{trend} from last month</p>
     </Card>
   )
 }
@@ -42,48 +42,54 @@ function AnalyticsDashboard() {
           </NavGroup>
         </Sidebar>
       }
-      header={
+    >
+      <PageContent>
         <Header
           title="Analytics"
           subtitle="Track your key metrics"
-          breadcrumbs={[{ label: 'Home', href: '#' }, { label: 'Analytics' }]}
+          breadcrumbs={[{label: "Home", href: "#"}, {label: "Analytics"}]}
           actions={
             <>
-              <Button variant="outline" size="sm">Export CSV</Button>
+              <Button variant="outline" size="sm">
+                Export CSV
+              </Button>
               <Button size="sm">New Report</Button>
             </>
           }
         />
-      }
-    >
-      <PageContent>
-        <div className="space-y-6">
+        <div className="space-y-4 p-4">
           {/* Alert */}
           <Alert status="info">
-            Data is updated every 15 minutes.{' '}
-            <a href="#" className="underline">View changelog</a>
+            Data is updated every 15 minutes.{" "}
+            <a href="#" className="underline">
+              View changelog
+            </a>
           </Alert>
 
           {/* Stats row */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <StatCard label="Total Revenue" value="$84,231" trend="+12%" />
-            <StatCard label="Active Users"  value="3,842"   trend="+5%" />
-            <StatCard label="Conversion"    value="3.2%"    trend="-0.4%" />
-            <StatCard label="Avg Session"   value="4m 12s"  trend="+8%" />
+            <StatCard label="Active Users" value="3,842" trend="+5%" />
+            <StatCard label="Conversion" value="3.2%" trend="-0.4%" />
+            <StatCard label="Avg Session" value="4m 12s" trend="+8%" />
           </div>
 
           {/* Tabs section */}
-          <Card header={
-            <div className="flex items-center justify-between">
-              <span>Traffic Overview</span>
-              <Badge status="success" dot>Live</Badge>
-            </div>
-          }>
+          <Card
+            header={
+              <div className="flex items-center justify-between">
+                <span>Traffic Overview</span>
+                <Badge status="success" dot>
+                  Live
+                </Badge>
+              </div>
+            }
+          >
             <Tabs
               tabs={[
                 {
-                  id: 'week',
-                  label: 'This Week',
+                  id: "week",
+                  label: "This Week",
                   content: (
                     <div className="py-8 text-center text-secondary text-sm">
                       Chart placeholder — integrate Recharts or Chart.js here
@@ -91,22 +97,14 @@ function AnalyticsDashboard() {
                   ),
                 },
                 {
-                  id: 'month',
-                  label: 'This Month',
-                  content: (
-                    <div className="py-8 text-center text-secondary text-sm">
-                      Monthly chart placeholder
-                    </div>
-                  ),
+                  id: "month",
+                  label: "This Month",
+                  content: <div className="py-8 text-center text-secondary text-sm">Monthly chart placeholder</div>,
                 },
                 {
-                  id: 'year',
-                  label: 'This Year',
-                  content: (
-                    <div className="py-8 text-center text-secondary text-sm">
-                      Yearly chart placeholder
-                    </div>
-                  ),
+                  id: "year",
+                  label: "This Year",
+                  content: <div className="py-8 text-center text-secondary text-sm">Yearly chart placeholder</div>,
                 },
               ]}
             />
@@ -116,7 +114,7 @@ function AnalyticsDashboard() {
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <Card header="Top Pages">
               <div className="flex flex-col gap-3 text-sm">
-                {['/dashboard', '/analytics', '/settings', '/reports'].map((path, i) => (
+                {["/dashboard", "/analytics", "/settings", "/reports"].map((path, i) => (
                   <div key={path} className="flex justify-between items-center">
                     <span className="font-mono text-foreground">{path}</span>
                     <Badge status="info">{(4 - i) * 1234}</Badge>
@@ -139,9 +137,9 @@ function AnalyticsDashboard() {
 }
 
 const meta = {
-  title: 'Recipes/Analytics Dashboard',
+  title: "Recipes/Analytics Dashboard",
   component: AnalyticsDashboard,
-  parameters: { layout: 'fullscreen' },
+  parameters: {layout: "fullscreen"},
 } satisfies Meta<typeof AnalyticsDashboard>
 
 export default meta
@@ -150,9 +148,9 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {}
 
 export const DarkTheme: Story = {
-  globals: { theme: 'dark' },
+  globals: {theme: "dark"},
 }
 
 export const Professional: Story = {
-  globals: { theme: 'professional' },
+  globals: {theme: "professional"},
 }

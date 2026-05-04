@@ -20,7 +20,7 @@ export const ThemeDecorator: Decorator = (Story, context) => {
       initialTheme={theme}
       themes={[baseTheme, darkTheme, professionalTheme]}
     >
-      <div style={{ background: 'hsl(var(--color-background))', minHeight: '100%', padding: '1rem' }}>
+      <div style={{ minHeight: '100%' }}>
         <Story />
       </div>
     </ThemeProvider>

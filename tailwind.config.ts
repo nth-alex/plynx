@@ -18,6 +18,7 @@ export default {
         warning: 'hsl(var(--color-warning) / <alpha-value>)',
         error: 'hsl(var(--color-error) / <alpha-value>)',
         info: 'hsl(var(--color-info) / <alpha-value>)',
+        card: 'hsl(var(--color-card) / <alpha-value>)',
       },
       spacing: {
         xs: 'var(--spacing-xs)',
